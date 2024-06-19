@@ -18,7 +18,6 @@ void DynamicArrayTest::testConstructors(){
     assert(arr2.getSize() == 7);
     try {
         DynamicArray<double> arr_(-1);
-        // ;
     }
     catch (IndexOutOfRange& ex) {}
 

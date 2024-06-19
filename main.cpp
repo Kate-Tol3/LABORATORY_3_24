@@ -1,18 +1,12 @@
 #include <iostream>
 #include "Test.h"
-#include "Interface.h"
-#include "UI.h"
-#include "testSegmentedDeque.h"
-#include "MutableSegmentedDeque.h"
+#include "UI+.h"
 
 int main() {
-    //Test test;
-    //test.TestAll();
-    // UI ui;
-    // ui.showMenu();
-
-    SegmentedDequeTest test;
-    test.test();
+    
+    // Test test;
+    // test.TestAll();
+    showUI();
 
     return 0;
 }

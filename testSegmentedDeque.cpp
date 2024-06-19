@@ -1,6 +1,4 @@
-
 #include "testSegmentedDeque.h"
-
 
 void SegmentedDequeTest::test(){
     testConstructors();
@@ -101,7 +99,8 @@ void SegmentedDequeTest::testGet(){
     SegmentedDeque<int> deque(elems, length, buffSize);
     int value = 100;
     deque.append(value);
-    assert(deque.get(length - 1) == value);
+    assert(deque.get(length) == value);
+
     try {
         deque.get(-1);
         assert(false);
@@ -112,6 +111,7 @@ void SegmentedDequeTest::testGet(){
 
 void SegmentedDequeTest::testSet(){
     int elems[10] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+    int new_elems[11] = {0, 1, 2, 3, 4, 5, 100, 7, 8, 9};
     int length = 10;
     int buffSize = 5;
     SegmentedDeque<int> deque(elems, length, buffSize);
@@ -120,18 +120,14 @@ void SegmentedDequeTest::testSet(){
     deque.set(index, value);
     
     assert(deque.getLength() == length);
-    for (int i = 0; i < index; i++){
-        assert(deque[i] == elems[i]);
+    for (int i = 0; i < length; i++){
+        std::cout << deque[i];
+        assert(deque[i] == new_elems[i]);
     }
-    assert(deque.get(index) == value);
-    for (int i = index; i<length;i++){
-        assert(deque[i] == elems[i-1]);
-    }
-
-
+        
     try { //empty deque
         deque.set(-1, value);
-        assert(false);
+        assert(false && "Must catch IndexOutOfRange");
     }
     catch(IndexOutOfRange& ex){}
 

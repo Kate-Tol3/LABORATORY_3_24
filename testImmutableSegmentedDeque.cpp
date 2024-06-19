@@ -169,8 +169,8 @@ void ImmutableSegmentedDequeTest::testGetLength(){
     ImmutableSegmentedDeque<int> immut_deque(elems, length, buffSize);
     assert(immut_deque.getLength() == length);
 
-    SegmentedDeque<int> deque1(buffSize);
-    assert(immut_deque.getLength() == 0);
+    ImmutableSegmentedDeque<int> immut_deque1(buffSize);
+    assert(immut_deque1.getLength() == 0);
 }
 
 void ImmutableSegmentedDequeTest::testAppend(){
@@ -324,7 +324,6 @@ void ImmutableSegmentedDequeTest::testPopHead(){
     int elems[15] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14}; 
     int length = 15;
     int buffSize = 7;
-    int value = 100;
 
     ImmutableSegmentedDeque<int> immut_deque1(elems, length, buffSize);
     ImmutableSegmentedDeque<int>* immut_deque2 = immut_deque1.popHead(); //removes edge
@@ -504,8 +503,8 @@ void ImmutableSegmentedDequeTest::testGetSubSequence(){
     delete result1;
 
 
-    int startIndex = 4;
-    int endIndex = 4; // start == end
+    startIndex = 4;
+    endIndex = 4; // start == end
     ImmutableSegmentedDeque<int> immut_deque2(elems, length, buffSize);
     Sequence<int>* result2 = immut_deque2.getSubSequence(startIndex, endIndex);
     assert(result2->getLength() == 1);

@@ -1,13 +1,4 @@
 #include "Test.h"
-#include "TestDynamicArray.h"
-#include "TestLinkedList.h"
-#include "TestMutableSequence.h"
-#include "TestImmutableSequence.h"
-#include "MutableArraySequence.h"
-#include "MutableListSequence.h"
-#include "ImmutableArraySequence.h"
-#include "ImmutableListSequence.h"
-
 
 void Test::testDynamicArray() {
     DynamicArrayTest tda;
@@ -39,6 +30,21 @@ void Test::testImmutableListSequence() {
     tils.test();
 }
 
+void Test::testImmutableSegmentedDeque() {
+    ImmutableSegmentedDequeTest tisd;
+    tisd.test();
+}
+
+void Test::testSegmentedDeque() {
+    SegmentedDequeTest tsd;
+    tsd.test();
+}
+
+void Test::testMutableSegmentedDeque() {
+    MutableSegmentedDequeTest tmsd;
+    tmsd.test();
+}
+
 void Test::TestAll() {
 
     testDynamicArray();
@@ -47,5 +53,8 @@ void Test::TestAll() {
     testMutableListSequence();
     testImmutableArraySequence();
     testImmutableListSequence();
+    testSegmentedDeque();
+    testImmutableSegmentedDeque();
+    testMutableSegmentedDeque();
 
 }

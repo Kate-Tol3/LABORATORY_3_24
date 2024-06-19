@@ -1,13 +1,13 @@
 #pragma once
 #include <cassert>
 #include <stdexcept>
-#include "ImmutableSegmentedDeque.h"
+#include "MutableSegmentedDeque.h"
 #include "MutableArraySequence.h"
 #include "LinkedList.h"
 #include "DynamicArray.h"
 #include "Sequence.h"
 
-class ImmutableSegmentedDequeTest {
+class MutableSegmentedDequeTest {
 public:
     void test();
     void testConstructors();
@@ -28,4 +28,3 @@ public:
     void testOperatorAccess();
     void testConcat();
 };
- 

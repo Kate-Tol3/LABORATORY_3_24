@@ -1,9 +1,6 @@
-
 #ifndef TESTLINKEDLIST_H
 #define TESTLINKEDLIST_H
 
-// #include "Exceptions.h"
-// #include "LinkedList.h"
 
 class LinkedListTest {
 public:

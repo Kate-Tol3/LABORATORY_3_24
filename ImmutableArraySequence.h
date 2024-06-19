@@ -48,9 +48,9 @@ public:
         seq_array->print();
     }
 
-    ImmutableArraySequence<T> *set(int index,const T& item) override{
+    ImmutableArraySequence<T> *set(int index, const T& item) override{
         auto *new_array = new ImmutableArraySequence<T>(*seq_array);
-        new_array->seq_array->set(item,index);
+        new_array->seq_array->set(index, item);
         return new_array;
     }
 
@@ -61,6 +61,7 @@ public:
         for (int i = startIndex; i < endIndex + 1; i++) {
             items [i - startIndex] = seq_array->get(i);
         }
+        delete items;
         return new ImmutableArraySequence<T>(items, len);
     }
 

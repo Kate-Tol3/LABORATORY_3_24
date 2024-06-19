@@ -1,5 +1,5 @@
+#pragma once
 #include <stdexcept>
-
 #include "Sequence.h"
 #include "Exceptions.h"
 #include "Exceptions+.h"
@@ -11,11 +11,12 @@
 template <typename T>
 class SegmentedDeque {
 private:
-    int size = 0; //����� ����� ���� (���������� ���������)
-    int buff_size = 0; //����� ��������
-    DynamicArray<T*>* arr_ptr = nullptr; // ������ ���������� 
-    int offset_tail = 0; // �������� � ����� ������ ��������
-    int offset_head = 0; // �������� � ����� ����� ��������
+    int size = 0; //размер всего дека(количество элементов)
+    int buff_size = 0; // размер сегмента
+    DynamicArray<T*>* arr_ptr = nullptr; // массив указателей на сегменты 
+    //MutableArraySequence arr_ptr аналогичен
+    int offset_tail = 0; // смещение слева 
+    int offset_head = 0; // смещение справа 
 
     void assertSizeCorrect() const {
         if (size == 0) throw EmptyExeption();
@@ -26,19 +27,19 @@ private:
 
     //private methods
 
-    void increaseFromHead() { // ��������� ������� ������
+    void increaseFromHead() {  //добавляет сегмекнт справа
         arr_ptr->append(new T[buff_size]);
     }
 
-    void increaseFromTail() { // ��������� ������� �����
+    void increaseFromTail() { //добавляет сегмент слева
         arr_ptr->prepend(new T[buff_size]);
     }
 
-    void decreaseFromHead() { //������� ������� ������
+    void decreaseFromHead() {  // удаляет сегмент справа
         arr_ptr->resize(arr_ptr->getSize() - 1);
     }
 
-    void decreaseFromTail() { // ������� �������  �����
+    void decreaseFromTail() { // удаляет сегмент слева
         int new_size = arr_ptr->getSize() - 1;
 
         DynamicArray<T*>* temp_arr = new DynamicArray<T*>(new_size);
@@ -49,7 +50,7 @@ private:
         arr_ptr = temp_arr;
     }
 
-    T& getElement(int index) const {
+    T& getElement(int index) const { // приватная фугкция получения элемента дека 
         assertIndexCorrect(index);
         int segment_ind = index / buff_size;
         index %= buff_size;
@@ -111,11 +112,11 @@ public:
 
     //overriden operators
 
-    T& operator[](int index) { // ��� ����������������� ��������� �� �������
+    T& operator[](int index) {
         return getElement(index);
     }
 
-    const T& operator[](int index) const { // ����������� ��������� ����������� ���������� [] (��� ������������)
+    const T& operator[](int index) const { 
         return getElement(index);
     }
 
@@ -151,7 +152,7 @@ public:
 
 
     const T& get(int index) const {
-        assertIndexCorrect(index);
+        //assertIndexCorrect(index);
         return (*this)[index];
     }
 
@@ -163,18 +164,18 @@ public:
     void print(){
         std::cout << (*this)[0];
         for (int i = 1; i < size; i++) {
-            std::cout <<" "<< (*this)[i];
+            std::cout <<" "<< this->get(i);
         }
     }
 
     void append(const T& item) {
         if (size == 0) arr_ptr = new DynamicArray<T*>(0);
-        if (offset_head == 0) { // ��������� ������� � �����
+        if (offset_head == 0) { // дек заполнен -> добавляем сегмент
             increaseFromHead();
             (*arr_ptr)[arr_ptr->getSize() - 1][offset_head] = item;
             offset_head = 1;
         }
-        else { // �� ��������� �������
+        else { 
             (*arr_ptr)[arr_ptr->getSize() - 1][offset_head] = item;
             offset_head = (offset_head + 1) % buff_size;
         }
@@ -183,13 +184,13 @@ public:
 
     void prepend(const T& item) {
         if (size == 0) arr_ptr = new DynamicArray<T*>(0);
-        if (offset_tail == 0) { // ��������� ������� � ������
+        if (offset_tail == 0) { // дек заполнен -> добавляем сегмент    
             increaseFromTail();
-            (*arr_ptr)[0][buff_size - 1] = item; // ��������� �������� � ����� ��������
+            (*arr_ptr)[0][buff_size - 1] = item; //     
             offset_tail++;
         }
-        else { // �� ��������� �������
-            (*arr_ptr)[0][buff_size - offset_tail - 1] = item;// ��������� �������� � ����� ��������
+        else {    
+            (*arr_ptr)[0][buff_size - offset_tail - 1] = item;//заполняем с конца сегмента     
             offset_tail = (offset_tail + 1) % buff_size;
         }
         size++;
@@ -202,7 +203,7 @@ public:
             append(item);
             return;
         }
-        prepend(0); // ��������� ������� ������� (item)
+        prepend(item);
         for (int i = 0; i < index; i++) {
             (*this)[i] = (*this)[i + 1];
         }

@@ -20,7 +20,6 @@ void LinkedListTest::testConstructors() {
     }
     try {
         LinkedList<int> list_(elems, -1);
-        // ;
     }
     catch (IndexOutOfRange& ex) {}
 
@@ -39,12 +38,10 @@ void LinkedListTest::testGet() {
     }
     try {
         list.get(-1);
-        // ;
     }
     catch (IndexOutOfRange& ex) {}
     try {
         list.get(7);
-        // ;
     }
     catch (IndexOutOfRange& ex) {}
 }
@@ -63,7 +60,6 @@ void LinkedListTest::testGetFirst() {
     LinkedList<double> list_;
     try {
         list_.getFirst();
-        // ;
     }
     catch (IndexOutOfRange& ex) {}
     catch (EmptyListException& ex) {}
@@ -77,7 +73,6 @@ void LinkedListTest::testGetLast() {
     LinkedList<double> list_;
     try {
         list_.getFirst();
-        // ;
     }
     catch (IndexOutOfRange& ex) {}
     catch (EmptyListException& ex) {}
@@ -121,11 +116,9 @@ void LinkedListTest::testPrepend() {
 }
 
 void LinkedListTest::testInsertAt() {
-    //int length = 7;
     double elems[7] = { 0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0 };
     LinkedList<double> list(elems, 7);
     int val = 100; int ind1 = 0, ind2 = 3, ind3 = 6;
-    //length += 3;
     list.insertAt(val, ind1);
     list.insertAt(val, ind2);
     list.insertAt(val, ind3);
@@ -139,14 +132,12 @@ void LinkedListTest::testInsertAt() {
 
     try {
         list.insertAt(100, -1);
-        // ;
     }
     catch (IndexOutOfRange& ex) {}
     catch (EmptyListException& ex) {}
 
     try {
         list.insertAt(100, 7);
-        // ;
     }
     catch (IndexOutOfRange& ex) {}
     catch (EmptyListException& ex) {}
@@ -171,19 +162,16 @@ void LinkedListTest::testGetSubList() {
     }
     try {
         list.getSubList(0, 7);
-        // ;
     }
     catch (IndexOutOfRange& ex) {}
     catch (EmptyListException& ex) {}
     try {
         list.getSubList(-1, 0);
-        // ;
     }
     catch (IndexOutOfRange& ex) {}
     catch (EmptyListException& ex) {}
     try {
         list.getSubList(1, 0);
-        // ;
     }
     catch (IndexOutOfRange& ex) {}
     catch (EmptyListException& ex) {}

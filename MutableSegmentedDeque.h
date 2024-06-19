@@ -36,11 +36,11 @@ public:
     
     //overriden operators
 
-    T& operator[](int index) { //��� ����������������� ���������
+    T& operator[](int index) { //для последовательного разыменования
         return (*deque)[index];
     }
 
-    const T& operator[](int index) const override { //����������� []
+    const T& operator[](int index) const override { //const [] наследуется
         return (*deque)[index];
     }
 

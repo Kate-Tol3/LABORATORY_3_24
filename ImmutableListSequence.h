@@ -79,9 +79,10 @@ public:
      }
 
     ImmutableListSequence<T> *set(int index,const T& item) override{
-        auto *new_list = new ImmutableListSequence<T>(*seq_list);
-        new_list->seq_list->set(item,index);
+        auto *new_list = new ImmutableListSequence<T>(*this); 
+        new_list->seq_list->set(item, index);
         return new_list;
+
     }
 
      void print() const{

@@ -1,6 +1,4 @@
-
-#ifndef DYNAMICARRAY_H
-#define DYNAMICARRAY_H
+#pragma once
 
 #include <iostream>
 #include <cmath>
@@ -44,12 +42,6 @@ public:
     };
 
     DynamicArray(): array(nullptr), arr_size(0), capacity(0){};
-
-    //explicit DynamicArray(const Sequence<T>& other): arr_size(other.getLength()), array(new T[other.getLength()]) {
-    //    for (int i = 0; i < arr_size; ++i) {
-    //        set(i, other.get(i));
-    //    }
-    //}
 
     //destructor
     ~DynamicArray() {
@@ -107,7 +99,7 @@ public:
     //    arr_size = new_size;
     //}
 
-    //�������� �� ����������� ��� ������ ����
+    //функция resize заменена на обычную для работы дека
     void resize(int new_size) {
         if (new_size < 0) throw IndexOutOfRange();
         if (new_size == arr_size) return;
@@ -126,20 +118,20 @@ public:
     }
 
     void print(){
-        for (int i = 0; i < arr_size;i++){
+        for (int i = 0; i < arr_size; i++){
             if (i != arr_size - 1) std::cout << this->get(i) << " ";
             else std::cout << this->get(i);
         }
     }
 
-    const T& operator[](int index) const{
+     T& operator[](int index) {
         if (index < 0 || index > arr_size) throw IndexOutOfRange();
         return array[index];
     }
 
-    T& operator[](int index){
-        if (index < 0 || index > arr_size) throw IndexOutOfRange();
-        return array[index];
+    const T& operator[](int index) const {
+       if (index < 0 || index > arr_size) throw IndexOutOfRange();
+        return const_cast<T&>(array[index]);
     }
 
     bool operator==(const DynamicArray<T>& other) {
@@ -157,7 +149,16 @@ public:
 
 
 
-    //������ ��� ���� (��� ������)
+    //методы для дека
+
+    friend std::ostream& operator << (std::ostream& out, const DynamicArray<T>& array) {
+
+        for (int i = 0; i < array.getSize() - 1; ++i) {
+            out << array[i] << " ";
+        }
+        out << array[array.getSize() - 1] << "\n";
+        return out;
+    }
 
     void append(const T& item) {
         resize(arr_size + 1);
@@ -191,7 +192,6 @@ public:
         arr_size += 1;
     }
 
-
 };
 
 template <typename T>
@@ -201,4 +201,3 @@ void copyArray(T *new_arr,const T* old_arr,int new_size) {
     }
 };
 
-#endif //DYNAMICARRAY_H

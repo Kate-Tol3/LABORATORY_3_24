@@ -48,6 +48,7 @@ public:
     void print() const override{
         seq_array->print();
     }
+    
     void set(int index,const T& item) override{
         this->seq_array->set(index, item);
     }
@@ -64,6 +65,7 @@ public:
         for (int i = 0; i < len ; i++){
             seq_array->set(i, items[i]);
         }
+        delete items;
         return this;
 
     }
@@ -106,8 +108,12 @@ public:
 
     }
 
-    const T& operator[](int index) const override{
-        return (seq_array->get(index));
+    T& operator[](int index) {
+        return (*seq_array)[index];
+    }
+
+    const T& operator [] (int index) const override {
+        return (*seq_array)[index];
     }
 
     bool operator==(const MutableSequence<T>& other) override {

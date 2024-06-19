@@ -5,6 +5,7 @@
 #include "Exceptions.h"
 #include "Sequence.h"
 #include "ImmutableSequence.h"
+#include <cassert>
 
 template<template<class> class ImmutableSequence>
 class ImmutableSequenceTest {
@@ -74,7 +75,6 @@ public:
     }
 
     void testGetLast() {
-        int length = 7;
         double elems[8] = {0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0};
         ImmutableSequence<double> immut_seq(elems, 8);
         assert(immut_seq.getLast() == 7.0);

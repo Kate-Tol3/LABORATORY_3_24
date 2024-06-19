@@ -1,10 +1,10 @@
-
 #ifndef TESTMUTABLESEQUENCE_H
 #define TESTMUTABLESEQUENCE_H
 
 #include "Exceptions.h"
 #include "MutableSequence.h"
 #include "Sequence.h"
+#include <cassert>
 
 template<template<class> class MutableSequence>
 class MutableSequenceTest {

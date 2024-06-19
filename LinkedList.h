@@ -42,6 +42,7 @@ private:
     }
 
 public:
+
     //constructors
     LinkedList():  length(0), head(nullptr), tail(nullptr) {};
 
@@ -121,6 +122,7 @@ public:
             sublist->append(temp->value);
             temp = temp->next;
         }
+        delete temp;
         return sublist;
     }
 
@@ -158,6 +160,8 @@ public:
         for(int pos = 0; pos < index; ++pos) curr = curr->next;
         curr->value = item;
 
+        delete curr;
+
     }
 
     void insertAt(const T& item,const int index) { // inserts node on stated index before previous
@@ -194,6 +198,8 @@ public:
             el2 = el2->next;
             ++new_list->length;
         }
+        delete el1;
+        delete el2;
         return new_list;
 
     }
@@ -208,6 +214,7 @@ public:
             temp = temp->next;
             pos++;
         }
+        delete temp;//
     }
 
     //
