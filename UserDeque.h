@@ -174,7 +174,7 @@ private:
         << "0 *** exit\n\n";
     }
 
-    void startDeque() {
+    void DequeMenu() {
         UserDeque<T> userDeque;
 
         showList();
@@ -203,9 +203,9 @@ private:
 
 public:
 
-    std::string start() {
+    std::string menu() {
         std::string action;
-        startDeque();
+        DequeMenu();
         std::cout << "To end the program type --> end.\n" << "To start again type --> start.\n";
         std::cin >> action;
         return action;

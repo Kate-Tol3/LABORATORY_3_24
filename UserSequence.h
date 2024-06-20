@@ -159,7 +159,7 @@ private:
         << "0  *** exit\n\n";
     }
 
-    void startSequence() {
+    void SequenceMenu() {
         UserSequence<T> sequence;
 
         sequence.fillSequence();
@@ -186,9 +186,9 @@ private:
 
 public:
 
-    std::string start() {
+    std::string menu() {
         std::string action;
-        startSequence();
+        SequenceMenu();
         std::cout << "To end the program type --> end.\n" << "If you want to start again --> again.\n";
         std::cin >> action;
         return action;

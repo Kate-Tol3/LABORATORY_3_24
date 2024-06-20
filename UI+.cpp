@@ -39,38 +39,38 @@ void showUI() {
         elType = selectElementType();
         if (seqType == "deque" && elType == "int") {
             DequeUI<int> ui;
-            func = ui.start();
+            func = ui.menu();
         } 
         else if (seqType == "deque" && elType == "double") {
             DequeUI<double> ui;
-            func = ui.start();
+            func = ui.menu();
         } 
         else if (seqType == "deque" && elType == "string") {
             DequeUI<std::string> ui;
-            func = ui.start();
+            func = ui.menu();
         } 
         else if (seqType == "deque" && elType == "complex") {
             DequeUI<Complex> ui;
-            func = ui.start();
+            func = ui.menu();
         } 
         
         else if (seqType == "array" && elType == "int") {
             SequenceUI<int> ui;
-            func = ui.start();
+            func = ui.menu();
         } 
         else if (seqType == "array" && elType == "double") {
             SequenceUI<double> ui;
-            func = ui.start();
+            func = ui.menu();
         } 
         else if (seqType == "array" && elType == "string") {
             SequenceUI<std::string> ui;
-            func = ui.start();
+            func = ui.menu();
         } 
         else if (seqType == "array" && elType == "complex") {
             SequenceUI<Complex> ui;
-            func = ui.start();
+            func = ui.menu();
         }
-        while (func != "start" && func != "end") {
+        while (func != "menu" && func != "end") {
             std::cout << "Incorrect input. Try again.\n";
             std::cin >> func;
         }
