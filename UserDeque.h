@@ -183,7 +183,6 @@ private:
         while (true) {
             std::cout << "\nEnter the action: ";
             std::cin >> action;
-            //std::cout << "action = " << action;
             if (action == "1") userDeque.printDeque();
             else if (action == "2") userDeque.printValue();
             else if (action == "3") userDeque.setValue();
