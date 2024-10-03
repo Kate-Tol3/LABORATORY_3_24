@@ -44,10 +44,6 @@ public:
         return (*deque)[index];
     }
 
-    T& operator[](int index){
-        return (*deque)[index];
-    }
-
     bool operator==(const ImmutableSequence<T>& other) override{ // не проверяет размер буфера
         if (this == &other) return true;
         if (this->getLength() == other.getLength()){
@@ -130,6 +126,7 @@ public:
     ImmutableSegmentedDeque<T>* removeAt(int index) const {
         assertIndexCorrect(index);
         ImmutableSegmentedDeque<T>* new_deque = new ImmutableSegmentedDeque<T>(*this);
+        new_deque->deque->removeAt(index);
         return new_deque;
     }
 

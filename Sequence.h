@@ -1,25 +1,57 @@
+#pragma once
 
-#ifndef SEQUENCE_H
-#define SEQUENCE_H
-
-
-template <class T>
-class Sequence {
+template <typename T>
+class Node{
 public:
-    //destructor
-    virtual ~Sequence() = default;
-
-    //methods
-    virtual const T& getFirst() const = 0;
-    virtual const T& getLast() const = 0;
-    virtual const T& get(int index) const = 0;
-    virtual int getLength() const = 0;
-
-    virtual Sequence<T>* concat(const Sequence <T>&) = 0;
-    virtual Sequence<T>* getSubSequence(int startIndex, int endIndex) = 0;
-    virtual void print() const = 0;
-    virtual const T& operator[](int index) const = 0;
-
+        T value;
+        Node<T> *prev;
+        Node<T> *next;
+public:
+    explicit Node(const T &n_val = 0, Node<T> *n_prev = nullptr, Node<T> *n_next = nullptr):
+        value(n_val), prev(n_prev), next(n_next){};
 };
+ 
+template <typename T>
+class Deque {
+private:
+    int length;
+    Node<T>* head;
+    Node<T>* tail;
+public:
 
-#endif //SEQUENCE_H
+  Deque():  length(0), head(nullptr), tail(nullptr) {};
+
+  ~Deque(){
+     Node<T> *curr = head;
+        while (curr) {
+            Node<T> *temp = curr->next;
+            delete curr;
+            curr = temp;
+        }
+  }
+
+  T popFront(){
+    if (head == NULL) return;
+    auto *temp = head;
+    head = head->next;
+    if (head) head->prev = NULL;
+    if (temp == tail) {tail = NULL};
+    T value = temp->value;
+    delete temp;
+
+    length--;
+    return value;
+  }
+
+  T popBack(){
+    if (tail == NULL) return;
+    auto *temp = tail;
+    tail = tail->prev;
+    if (tail) tail->next = NULL;
+    if (temp == head) {head = NULL};
+    T value = temp->value;
+    delete temp;
+    length--;
+    return value;
+  }
+};
